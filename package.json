@@ -1,0 +1,54 @@
+{
+	"name": "fresh-food",
+	"version": "0.1.0",
+	"author": "Blyy",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint"
+	},
+	"dependencies": {
+		"core-js": "*",
+		"dayjs": "*",
+		"lodash": "*",
+		"vue": "*",
+		"vue-cordova": "*"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.10",
+		"@babel/eslint-parser": "*",
+		"@vue/cli-plugin-babel": "*",
+		"@vue/cli-plugin-eslint": "*",
+		"@vue/cli-service": "*",
+		"css-loader": "*",
+		"eslint": "*",
+		"eslint-plugin-vue": "*",
+		"less": "*",
+		"less-loader": "*",
+		"vue-template-compiler": "*"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "@babel/eslint-parser"
+		},
+		"rules": {
+			"no-unused-vars": "off",
+			"no-unreachable": "off",
+			"vue/multi-word-component-names": "off"
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
+}

@@ -1,0 +1,678 @@
+/*
+	[v-cloak] {
+		display: none
+	}
+
+*/
+
+// FONTS & COLORS
+
+	@import "fonts.css";
+	/*
+		PANGRAM _
+			900 - BLACK
+			700 - BOLD
+			500 - MEDIUM
+			400 - REGULAR
+			300 - LIGHT
+	*/
+	
+	.pangram(@s:1rem, @c:@grey, @w:400){
+		font-family:"Pangram", Arial, Helvetica, sans-serif;
+		font-size: @s;
+		font-weight: @w;
+		color: @c;
+	}
+
+	@black:#000;
+	@white:#fff;
+
+	@grey:#6D6E71;
+		@greydark:#191919;
+		@greylight:#E6E7E8;
+		@greywhite:#F1F2F2;
+
+	@positive: #00ff95;
+	@negative: #DC143C;	
+
+	@cat_meat:#BE1E2D;
+	@cat_fish:#00AEEF;
+	@cat_vegetable:#009444;
+	@cat_junk:#FBB040;
+	@cat_milk:#698796;
+	@cat_custom:#662D91;
+
+	@dayindex_1:#36000E;
+	@dayindex_2:#F15B22;
+	@dayindex_3:#FFCF29;
+	@dayindex_4:#009444;
+
+
+
+	.transition(@t:0.35s){
+		transition:all @t ease;
+	}
+
+// Init
+
+	*, ::after, ::before {
+		box-sizing: border-box;
+	}
+
+	body{
+		padding: 0;
+		margin: 0;
+	}
+
+	#all {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-align: center;
+		position: relative;
+
+		background-color: @greywhite;
+		min-height: 100vh;
+		padding: 0 10px;
+
+		max-width: 500px;
+		margin: 0 auto;
+		overflow-x: hidden;
+	}
+
+	/*
+	ul{
+		padding: 15px;
+		list-style: none;
+		margin: 0;
+
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+
+		li{
+			margin: 0 5px 10px;
+			padding: 10px;
+			border: 4px solid crimson;
+			color: crimson;
+			font-weight: bold;
+			font-size: 1.125rem;
+			cursor: pointer;
+		}
+
+		&.date_items{
+			li{
+				text-align: center;
+				span{
+					display: block;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+	*/
+
+	.bg_stripes{
+		background-image:url('stripes_pattern.png');
+		background-repeat: repeat;
+		background-size: 50%;
+		background-color: @white;
+	}
+
+// --- HOME / ALL
+
+	header{
+		padding: 15px 5px;
+
+		.logo_header{
+			display: flex;
+			align-items: center;
+
+			svg{
+				flex: 1 0 35%;
+				fill: @greydark;
+			}
+
+			&:after, &:before{
+				content: '';
+				flex: 1;
+				display: block;
+				height: 35px;
+
+				background-image:url('stripes_pattern.png');
+				background-repeat: repeat;
+				background-size: 75%;
+			}
+
+			&:before{
+				margin-right: 15px;
+			}
+			&:after{
+				margin-left: 15px;
+			}
+		}
+	}
+
+	#add_item_btn{
+		position: absolute;
+
+		right: 15px;
+		bottom: 15px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 70px;
+		height: 70px;
+		border-radius: 100%;
+
+		.pangram(5rem, @black);
+		line-height: 1;
+		padding-bottom: 12px;
+
+		border: solid 2px @black;
+		box-shadow: inset 0 0 0 3px @black;
+		background-image:url('mini_plus_pattern.png');
+		// background-size: 50%;
+
+		&:hover, &:active{
+			background-color: crimson;
+		}
+
+	}
+
+// --- LIST ITEM
+
+	#list_items{
+
+		ul.items_wrapper{
+			display: block;
+			list-style: none;
+			padding: 0;
+			padding-bottom: 80px;
+
+			&:before,
+			li:after{
+				content: '';
+				display: block;
+				height: 6px;
+				width: 100%;
+				margin: 10px 0;
+				background-image:url('stripes_pattern.png');
+				background-repeat: repeat;
+				background-size: 15%;
+			}
+
+			li{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				height: 75px;
+				// overflow: hidden;
+				
+				.days{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex: 0 18%;
+					height: 100%;
+					background-color: @grey;
+					.pangram(1.35rem, @white, 900);
+
+					border-top-left-radius: 8px;
+					border-bottom-left-radius: 8px;
+
+					&.style_0{
+						background-color: @black;
+					}
+					&.style_1{
+						background-color: @dayindex_1;
+					}
+					&.style_2{
+						background-color: @dayindex_2;
+					}
+					&.style_3{
+						background-color: @dayindex_3;
+					}
+					&.style_4{
+						background-color: @dayindex_4;
+					}
+				}
+
+				.icon,
+				.title_custom{					
+					display: flex;
+					flex: auto;
+					height: 100%;
+					background-color: @greylight;
+
+					align-items: center;
+					justify-content: center;
+
+					.pangram(1.5rem, @cat_custom, 900);
+					text-transform: uppercase;
+				}
+
+				.icon{
+					padding: 8px;
+
+					svg{
+						height: 100%;
+						width: auto;
+					}
+
+					&.cat_meat svg{
+						fill: @cat_meat;
+					}
+					&.cat_fish svg{
+						fill: @cat_fish;
+					}
+					&.cat_vegetable svg{
+						fill: @cat_vegetable;
+					}
+					&.cat_dairy svg{
+						fill: @cat_milk;
+					}
+					&.cat_junkfood svg{
+						fill: @cat_junk;
+					}
+				}
+
+				.delete_btn{
+					background: @grey;
+					border: none;
+					border-top-right-radius: 8px;
+					border-bottom-right-radius: 8px;
+					height: 100%;
+					width: 50px;
+					padding-bottom: 10px;
+					.pangram(3rem, @white, 300);
+				}
+
+
+
+
+				& + li{
+					margin-top: 26px;
+				}
+			}
+		}
+
+
+		.empty_list{
+			margin-top: 25vh;
+
+			p{
+				.pangram(2rem, @greydark, 500);
+				text-align: center;
+				line-height: 1;
+				margin-bottom: 30px;
+			}
+
+			.no_item_button{
+				border: none;
+				border-radius: 15px;
+
+				background: @black;
+				.pangram(1.25rem, @white, 500);
+				padding: 12px 30px;
+			}
+		}
+
+	}
+
+// --- ADD ITEM
+
+	#add_item_panel{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: @white;
+
+		padding-top: 60px;
+
+		.cancel_btn{
+			position: absolute;
+
+			top: 10px;
+			left: 10px;
+
+			border: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+
+			font-family: sans-serif;
+			font-size: 1.5rem;
+			color: #fff;
+
+			background-color: crimson;
+		}
+
+		h3{
+			.pangram(3rem, @black, 700);
+			text-align: center;
+			padding: 0 15px;
+			margin: 0;
+
+			&:after{
+				content: '';
+				display: block;
+				margin: 20px 15px;
+				// width: 100%;
+				height: 10px;
+
+				background-image:url('stripes_pattern.png');
+				background-repeat: repeat;
+				background-size: 20%;
+			}
+		}
+
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;		
+			justify-content: center;
+			list-style: none;
+			padding: 0;
+			margin: 0 20px;
+
+			li{
+				position: relative;
+				margin: 10px;
+				padding: 0;
+				width: calc(50% - 20px);
+				height:auto;
+				border: 10px solid @grey;
+				border-radius: 10px;
+				cursor: pointer;
+
+				&:before {
+					content:'';
+					float:left;
+					padding-top:100%;
+				}
+
+				svg{
+					position: absolute;
+					top: 15%;
+					left: 15%;
+
+					width: 70%;
+					height: 70%;
+					object-fit: cover;
+				}
+
+				// Categories colors
+
+					&.cat_meat{ 
+						border-color: @cat_meat; 
+						svg{
+							fill: @cat_meat; 
+						}
+					}
+					&.cat_fish{ 
+						border-color: @cat_fish; 
+						svg{
+							fill: @cat_fish; 
+						}
+					}
+					&.cat_vegetable{ 
+						border-color: @cat_vegetable; 
+						svg{
+							fill: @cat_vegetable; 
+						}
+					}
+					&.cat_dairy{ 
+						border-color: @cat_milk; 
+						svg{
+							fill: @cat_milk; 
+						}
+					}
+					&.cat_junkfood{ 
+						border-color: @cat_junk; 
+						svg{
+							fill: @cat_junk; 
+						}
+					}
+					&.cat_custom{ 
+						border-color: @cat_custom; 
+						svg{
+							fill: @cat_custom; 
+						}
+					}
+
+				// Back Button
+
+					&.back_btn{
+						width: 100%;
+						border: none;
+						padding: 10px 0;
+						.pangram(1.5rem, @grey, 700);
+						
+						&:before {
+							content:'';
+							float: none;
+							display: inline-block;
+							border: solid @grey;
+							border-width: 0 3px 3px 0;
+							padding: 3px;
+							transform: rotate(135deg);
+
+							position: relative;
+							top: -3px;
+							left: -12px;
+						}
+
+					}
+
+			}
+
+			&.cat_lvl_2{
+				li svg{
+					fill:@black;
+				}
+			}
+		}
+
+		.date_items{
+			li:not(.back_btn){
+				text-align: center;
+				text-align: center;
+				border: none;
+				background: @greylight;
+				border-radius: 5px;
+				padding: 12px;
+				margin: 0 5px;
+				margin-bottom: 8px;
+
+				.pangram(1.25rem, @black, 800);
+				text-shadow: 0px 1px 2px fade(@greydark, 75%);
+				text-transform: uppercase;
+
+				.day{
+					margin-right: 10px;
+				}
+
+				&:before{
+					content: none;
+				}
+			}
+
+			.back_btn{
+				padding-top: 0;
+			}
+		}
+
+		.custom_form{
+			margin: 50px 20px;
+
+			input{
+				display: block;
+				border: solid 1px @grey;
+				width: 100%;
+				padding:10px 8px;
+
+				.pangram(1.25rem, @greydark, 700);
+				text-align: center;
+				text-transform: uppercase;
+				.transition();
+
+				&:focus, &:active{
+					outline: none;
+					border-color: @white;
+					box-shadow:0 0 0 4px @positive;
+				}
+			}
+
+			button{
+				display: block;
+				width: 100%;
+				margin: 15px auto;
+				padding: 15px;
+				background-color: @cat_custom;
+				border: none;
+				border-radius: 8px;
+				.pangram(1.125rem, @white, 700);
+				text-align: center;
+				.transition();
+
+				&:focus, &:active, &:hover{
+					outline: none;
+					background-color: darken(@cat_custom, 15%);
+				}
+			}
+		}
+
+
+		.recap_item{
+			padding: 0 50px;
+
+			.icon_wrapper{
+				text-align: center;
+				margin: 30px 0 20px;
+
+				svg{
+					display: inline-block;
+					width: 100px;
+					height: auto;
+				}
+			}
+
+			h4{
+				text-align: center;
+				margin: 0;
+			}
+
+			.category_name{
+				.pangram(1.5rem, @grey, 300);
+				text-transform: uppercase;
+			}
+
+			.item_name{
+				.pangram(2.35rem, @black, 800);
+				margin-bottom: 8px;
+			}
+
+			.date{
+				.pangram(1.75rem, @greydark, 500);
+				margin-top: 30px;
+
+				span{
+					display: inline-block;
+					padding: 10px 20px;
+					border-radius: 100px;
+					background: @greywhite;
+					box-shadow: 0 0 10px fade(@grey, 75%);
+				}
+			}	
+
+
+				&.cat_meat{ 
+					border-color: @cat_meat; 
+					svg{
+						fill: @cat_meat; 
+					}
+				}
+				&.cat_fish{ 
+					border-color: @cat_fish; 
+					svg{
+						fill: @cat_fish; 
+					}
+				}
+				&.cat_vegetable{ 
+					border-color: @cat_vegetable; 
+					svg{
+						fill: @cat_vegetable; 
+					}
+				}
+				&.cat_dairy{ 
+					border-color: @cat_milk; 
+					svg{
+						fill: @cat_milk; 
+					}
+				}
+				&.cat_junkfood{ 
+					border-color: @cat_junk; 
+					svg{
+						fill: @cat_junk; 
+					}
+				}
+				&.cat_custom{ 
+					border-color: @cat_custom; 
+					svg{
+						fill: @cat_custom; 
+					}
+				}
+		}
+
+		.validate_btn{
+			display: block;
+			width: 80%;
+			margin: 50px auto;
+			padding: 12px;
+			border-radius: 30px;
+			background: @positive;
+			border: none;
+			.pangram(1.3rem, @white, 500);
+		}
+
+
+	}
+
+
+// TRANSITIONS Vue
+
+	// slide-right
+
+		.slide-right-enter-active,
+		.slide-right-leave-active {
+			.transition();
+		}
+
+		.slide-right-enter,
+		.slide-right-leave-to {
+			left: 50% !important;
+			opacity: 0;
+		}
+
+	// List
+		.list-item {
+			// display: inline-block;
+			// margin-right: 10px;
+		}
+		.list-enter-active, .list-leave-active {
+			.transition();
+		}
+		.list-enter, .list-leave-to {
+			opacity: 0;
+			transform: translateY(30px);
+		}	
